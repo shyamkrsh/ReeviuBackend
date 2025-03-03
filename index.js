@@ -1,13 +1,27 @@
 import express from 'express'
-import mongoose from 'mongoose';
+import Video from './models/Video.js';
+import videos from './data.js';
+import connectToDB from './db.js'
+import videosRouter from './routes/videosRouter.js'
 
-import printHello from './db.js'
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+connectToDB();
 
+app.use('/api/videos', videosRouter);
 
-printHello();
+// app.get("/upload-videos", async (req, res) => {
+//     for (let i = 0; i < videos.length; i++) {
+//         let video = new Video(videos[i]);
+//         await video.save().then((res) => {
+//             console.log("Uploaded...");
+//         }).catch((err) => {
+//             console.log(err);
+//         })
+//     }
+//     res.send("Data has been uploaded!");
+// })
 
 
 
