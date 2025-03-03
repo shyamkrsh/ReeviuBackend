@@ -2,8 +2,11 @@ import express from 'express'
 import Video from './models/Video.js';
 import videos from './data.js';
 import connectToDB from './db.js'
-import videosRouter from './routes/videosRouter.js';
 import bodyParser from 'body-parser';
+import cors from 'cors'
+
+import videosRouter from './routes/videosRouter.js';
+import userRouter from './routes/userRouter.js'
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -11,8 +14,10 @@ connectToDB();
 
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors())
 
 
+app.use("/api/user", userRouter);
 app.use('/api/videos', videosRouter);
 
 // app.get("/upload-videos", async (req, res) => {
