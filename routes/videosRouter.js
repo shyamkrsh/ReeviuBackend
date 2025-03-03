@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/all", getAllVideos);
 router.post("/upload", uploadVideo);
-router.post("/trending", getTrendingVideos);
+router.get("/trending", getTrendingVideos);
 router.get("/getOne/:videoId", getOneVideos);
 
 export default router;
